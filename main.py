@@ -4,6 +4,9 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import requests
+from typing import Optional
+
+
 
 app = FastAPI()
 
@@ -13,9 +16,10 @@ templates = Jinja2Templates(directory="templates")
 # Data store for logging requests and responses
 log_data = []
 
+# Define the Email class
 class Email(BaseModel):
     subject: str
-    description: str | None = None
+    description: Optional[str] = None
 
 # Get the OpenAI API key from environment variables
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
